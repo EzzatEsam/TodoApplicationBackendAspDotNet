@@ -111,8 +111,8 @@ namespace TodoProj.Controllers
                 return NotFound();
             }
 
-            var userId = _userManager.GetUserId(User);
-            if (userId == null)
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
             {
                 return BadRequest("");
             }
@@ -131,7 +131,8 @@ namespace TodoProj.Controllers
                 DueDate = dto.DueDate,
                 CreatedDate = dto.CreatedDate,
                 GroupId = dto.GroupId,
-                UserID = userId,
+                UserID = user.Id,
+                User = user,
                 Group = group
             };
 
@@ -166,8 +167,5 @@ namespace TodoProj.Controllers
         {
             return _context.TodoItems.Any(e => e.Id == id);
         }
-
-
-
     }
 }

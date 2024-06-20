@@ -10,12 +10,13 @@ using TodoProj.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var config = builder.Configuration;
 // Add services to the container.
 builder.Services.AddCors(); // Add this line to enable CORS
 
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
-builder.Services.AddDbContext<TodoAppContext>(opt => opt.UseInMemoryDatabase("TodoProj"));
+builder.Services.AddDbContext<TodoAppContext>(opt => opt.UseSqlite(config.GetConnectionString("DefaultConnection")));
 builder.Services.AddIdentity<CustomUser, IdentityRole>().AddEntityFrameworkStores<TodoAppContext>().AddDefaultTokenProviders();
 builder.Services.AddAuthentication(opt =>
 {

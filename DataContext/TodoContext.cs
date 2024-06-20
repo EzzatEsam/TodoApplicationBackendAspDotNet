@@ -15,6 +15,7 @@ public class TodoAppContext : IdentityDbContext<CustomUser>
     public TodoAppContext(DbContextOptions<TodoAppContext> options)
         : base(options)
     {
+        
     }
 
 }

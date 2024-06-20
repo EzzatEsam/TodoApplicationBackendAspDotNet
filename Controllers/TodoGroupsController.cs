@@ -91,12 +91,13 @@ namespace TodoProj.Controllers
         public async Task<ActionResult<TodoGroupDTO>> PostTodoGroup(TodoGroupDTO todoGroup)
         {
 
-            var UserId = _userManager.GetUserId(User);
-            if (UserId == null)
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
             {
                 return Unauthorized();
             }
-            var group = new TodoGroup { Name = todoGroup.Name, UserId = UserId };
+            var group = new TodoGroup { Name = todoGroup.Name, UserId = user.Id , User = user};
             _context.TodoGroups.Add(group);
             await _context.SaveChangesAsync();
 

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TodoProj.Auth;
@@ -68,8 +69,29 @@ public class UserAccountController : ControllerBase
 
         return token;
 
+    }
 
+    [Authorize]
+    [HttpGet]
+    [Route("me")]
+    public async Task<ActionResult<UserDTO>> Me()
+    {
+        var user = await _userManager.GetUserAsync(User);
 
+        if (user == null)
+        {
+            return NotFound("User not found");
+        }
+
+        var userDTO = new UserDTO
+        {
+            UserName = user.UserName!,
+            Email = user.Email!,
+            FirstName = user.FirstName,
+            LastName = user.LastName
+        };
+
+        return userDTO;
     }
 
 }

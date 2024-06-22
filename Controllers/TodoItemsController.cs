@@ -62,11 +62,14 @@ namespace TodoProj.Controllers
                 return NotFound();
             }
 
-            var names = group.Items.Select(x => x.Name).ToList();
-            if (names.Contains(dto.Name))
-            {
-                return Conflict("Name already exists");
-            }
+            // TODO : the following code is not working as expected Fix
+
+
+            // var names = group.Items.Select(x => x.Name).ToList();
+            // if (names.Contains(dto.Name))
+            // {
+            //     return Conflict("Name already exists");
+            // }
 
             item.Name = dto.Name;
             item.IsDone = dto.IsDone;

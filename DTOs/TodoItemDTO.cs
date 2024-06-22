@@ -10,6 +10,8 @@ public record TodoItemDTO
 
     public bool IsDone { get; set; } = false;
     public string Description { get; set; } = string.Empty;
+
+    public long Id { get; set; }
     public DateTime DueDate { get; set; }
     public DateTime CreatedDate { get; set; }
 
@@ -18,6 +20,7 @@ public record TodoItemDTO
         return new TodoItemDTO
         {
             GroupId = item.GroupId,
+            Id = item.Id,
             Name = item.Name,
             Description = item.Description,
             DueDate = item.DueDate,

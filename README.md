@@ -7,6 +7,8 @@ This  only provides the API endpoints for the Todo application.
 A wokring implementation of the frontend made with react and tailwind can be found in this repo [TodoAppFrontendReact
 ](https://github.com/EzzatEsam/TodoAppFrontendReact)
 
+
+![](Github/Screenshots/2024-06-26-21-38-48.png)
 ## Getting Started
 
 To get started with this project, follow the steps below:

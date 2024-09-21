@@ -64,7 +64,7 @@ public class UserAccountController : ControllerBase
 
         var token = new LoginTokenDTO
         {
-            Token = tokenStr
+            AccessToken = tokenStr
         };
 
         return token;
